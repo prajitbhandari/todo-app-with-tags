@@ -1,0 +1,48 @@
+<h1>Edit Todo</h1>
+<%#= form_with(model: @todo, local: true) do |f| %>
+<%= form_for @todo do |f| %>
+  <div class="field">
+    <strong><%= f.label :item %></strong>
+    <%= f.text_field :item %>
+    <br><br>
+  </div>
+  <p> Tag </p>
+  <%= f.select(:tag_ids, Tag.all.collect {|p| [ p.name, p.id ] }, {:prompt => "Please select"},{:multiple => true}) %>
+  <%#= f.collection_select(:tag_ids, Tag.all, :id, :name,{:prompt => "Please Select"}, {:multiple => true}) %>
+  <script>
+      $(document).ready(function() {
+          $('#todo_tag_ids').select2();
+      });
+  </script>
+
+<!--  <p>Tag</p>-->
+<!--    <div class="controls">-->
+      <%# Tag.all.each do |tag| %>
+        <%#= f.check_box :tag_ids, {multiple: true}, tag.id, nil %>
+        <%#= tag.name %>
+        <%#= check_box_tag "todo[tag_ids][]", tag.id, @todo.tag_ids.include?(tag.id), id: dom_id(tag) %>
+<!--         dom_id is used to make every checkboxes unique-->
+        <%#= f.collection_check_boxes(:tag_ids, Tag.all,:id, :name) %>
+
+<!--        <br>-->
+      <%# end %>
+<!--    </div>-->
+<!--<br>-->
+  <br><br>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+

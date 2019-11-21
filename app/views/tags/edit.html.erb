@@ -1,0 +1,14 @@
+<h1>Edit Todo</h1>
+<%= form_with(model: @tag, local: true) do |f| %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <br><br>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<br>
+<%= link_to 'Show', @tag %> |
+<%= link_to 'Back', tags_path %>

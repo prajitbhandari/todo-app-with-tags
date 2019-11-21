@@ -1,0 +1,16 @@
+<p>
+  <strong>Name:</strong>
+  <%= @tag.name %>
+  <%= link_to 'Edit', edit_tag_path(@tag)%>
+  <%= link_to 'Back', tags_path %>
+</p>
+
+<p> The associated Todos are </p>
+<%  @tag.todos.each do |t| %>
+  <ul>
+    <li>
+      <%= t.item %>
+      <%= link_to "Show",todo_path(t.id)%>
+    </li>
+  </ul>
+<% end %>
