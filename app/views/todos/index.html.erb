@@ -1,28 +1,73 @@
 <h1>Todos</h1>
 <table>
-    <thead>
-    <tr>
-      <th> ID</th>
-      <th>Item</th>
-      <th colspan="3">Action</th>
-    </tr>
-    </thead>
+  <thead>
+  <tr>
+    <th> ID</th>
+    <th>Item</th>
+    <th colspan="3">Action</th>
+  </tr>
+  </thead>
 
-    <tbody>
-    <% @count = 1 %>
-    <% @todos.each do |todo| %>
+  <tbody>
+  <% @count = 1 %>
+  <% @todos.each do |todo| %>
     <tr>
-        <td><%= @count %></td>
-        <td><%= todo.item %></td>
-        <% @count+= 1 %>
-        <td><%= link_to 'Show', todo %></td>
-        <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
-        <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= @count %></td>
+      <% if todo.isCompleted %>
+          <td id = "todo-item<%=todo.id%>"><mark><%= todo.item %></td></mark>
+      <% else %>
+          <td id = "todo-item<%=todo.id%>"><%= todo.item %></td>
+      <% end %>
+      <td><span class="markItem" id = "<%= todo.id%>">Mark as completed</span></td>
+      <td><%= link_to 'Show', todo %></td>
+      <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
+      <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% @count+= 1 %>
     </tr>
-    <% end %>
-    </tbody>
+  <% end %>
+  </tbody>
 </table>
 
 <br>
-
 <%= link_to 'New Todo', new_todo_path %>
+
+
+<!--<h1>Todos</h1>-->
+<!--<table>-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--      <th colspan="2"> ID</th>-->
+<!--      <th colspan="">Item</th>-->
+<!--      <th colspan="10">Action</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+    <%# @count = 1 %>
+    <%# @todos.each do |todo| %>
+<!--        <tr>-->
+<!--            <td><%#= @count %></td>-->
+<!--            <td></td>-->
+          <%#= form_for :todo, url: {action: "completed", params: {id: @todo.id}} do |f| %>
+            <%#= form_with(model:@todo, local: true, url: todos_completed_path, method: :PUT) do |f| %>
+        <%#= form_tag(todos_completed_path, multipart: true) do %>
+<!--            <td>-->
+              <%#= todo.item%>
+              <%#= f.check_box(:isCompleted, options = {},"0") %>
+              <%#= f.check_box(:isCompleted) %>
+              <%#= check_box_tag("isCompleted", value = false, checked = false, options = {:id => todo.id})%>
+              <!-- name for each checkbox, value for each check box, status of checked, options -->
+              <%#= label_tag "Cross" %>
+<!--            </td>-->
+<!--            <td><%#= f.submit "Mark as Complete"%></td>-->
+          <%# end %>
+<!--            <td><%#= link_to 'Show', todo %></td>-->
+<!--            <td><%#= link_to 'Edit', edit_todo_path(todo) %></td>-->
+<!--            <td><%#= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+            <%# @count+= 1 %>
+<!--        </tr>-->
+    <%# end %>
+<!--    </tbody>-->
+<!--</table>-->
+<!--<br>-->
+<%#= link_to 'New Todo', new_todo_path %>
+

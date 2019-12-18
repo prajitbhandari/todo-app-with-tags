@@ -1,8 +1,10 @@
 require 'byebug'
 class TodosController < ApplicationController
+  respond_to? :html, :js
   def index
     @todos = Todo.all
   end
+
   def new
     @todo = Todo.new
   end
@@ -29,11 +31,23 @@ class TodosController < ApplicationController
 
   def update
     @todo = Todo.find(params[:id])
-    if @todo.update(todo_params)
-      redirect_to @todo
+    @todo.isCompleted ? @todo.update_attribute(:isCompleted, nil) : @todo.update_attribute(:isCompleted, true)
+
+    if request.xhr?
+      # respond to Ajax request
+      respond_to do |format|
+        #format.js { render :file => "/todos/index.html.erb" }
+        format.js
+      end
     else
-      redirect_to edit_todo_path(@todo)
+      redirect_to todos_path
     end
+
+    #if @todo.update(todo_params)
+    #  redirect_to todos_path
+    #else
+    #  redirect_to edit_todo_path(@todo)
+    #end
   end
 
   def destroy
@@ -42,9 +56,16 @@ class TodosController < ApplicationController
     redirect_to todos_path
   end
 
+  #def completed
+  #  @todo = Todo.find(params[:id])
+  #  @todo.update_attribute(:isCompleted, true)
+  #  redirect_to todos_path, notice: "Task Completed"
+  #end
+
+
   private
   def todo_params
-    params.require(:todo).permit(:item, :tag_ids => [])
+    params.require(:todo).permit(:item, :isCompleted, :tag_ids => [])
   end
 end
 
