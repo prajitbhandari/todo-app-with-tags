@@ -24,6 +24,9 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem "select2-rails"
+gem 'pry-nav'
+gem 'pry-rails'
+gem 'pry-rescue'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
