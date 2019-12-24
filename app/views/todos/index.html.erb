@@ -16,7 +16,7 @@
       <% if todo.isCompleted %>
           <td class = "completed" style= "color:green;" id = "item<%=todo.id%>"> <%= todo.item %></td>
       <% else %>
-          <td style= "color:black;" id = "item<%=todo.id%>"><%= todo.item %></td>
+          <td class = "uncompleted" style= "color:black;" id = "item<%=todo.id%>"><%= todo.item %></td>
       <% end %>
         <td><span class="markItem" id = "<%= todo.id%>">Mark as completed</span></td>
         <td><%= link_to 'Show', todo %></td>

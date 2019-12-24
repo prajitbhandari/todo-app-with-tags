@@ -31,9 +31,23 @@ class TodosController < ApplicationController
 
   def update
     @todo = Todo.find(params[:id])
-    @todo.isCompleted ? @todo.update_attribute(:isCompleted, nil) : @todo.update_attribute(:isCompleted, true)
-    render json: @todos
+    @todo.isCompleted ? @todo.update_attribute(:isCompleted, false) : @todo.update_attribute(:isCompleted, true)
+    respond_to do |format|
+      format.json { render json: {:todo => @todo } }
+    end
   end
+
+  #def update
+  #  @todo = Todo.find(params[:id])
+  #  respond_to do |format|
+  #    if @todo.update(todo_params)
+  #      format.html { redirect_to @todo }
+  #    else
+  #      format.html { render edit_todo_path(@todo) }
+  #    end
+  #  end
+  #end
+
 
   def destroy
     @todo = Todo.find(params[:id])
