@@ -24,9 +24,10 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem "select2-rails"
-gem 'pry-nav'
-gem 'pry-rails'
-gem 'pry-rescue'
+
+#gem 'pry-nav'
+#gem 'pry-rails'
+#gem 'pry-rescue'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
@@ -38,6 +39,9 @@ gem 'pry-rescue'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+
+gem "paranoia"
+
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

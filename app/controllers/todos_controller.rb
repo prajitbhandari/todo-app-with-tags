@@ -2,7 +2,7 @@ require 'byebug'
 class TodosController < ApplicationController
 
   def index
-    @todos = Todo.all
+    @todos = Todo.with_deleted
   end
 
   def new
@@ -31,23 +31,19 @@ class TodosController < ApplicationController
 
   def update
     @todo = Todo.find(params[:id])
-    @todo.isCompleted ? @todo.update_attribute(:isCompleted, false) : @todo.update_attribute(:isCompleted, true)
-    respond_to do |format|
-      format.json { render json: {:todo => @todo } }
+    if request.xhr?
+      @todo.isCompleted ? @todo.update_attribute(:isCompleted, false) : @todo.update_attribute(:isCompleted, true)
+      respond_to do |format|
+        format.json { render json: {:todo => @todo } }
+      end
+    else
+      if @todo.update(todo_params)
+        redirect_to @todo
+      else
+        redirect_to edit_todo_path(@todo)
+      end
     end
   end
-
-  #def update
-  #  @todo = Todo.find(params[:id])
-  #  respond_to do |format|
-  #    if @todo.update(todo_params)
-  #      format.html { redirect_to @todo }
-  #    else
-  #      format.html { render edit_todo_path(@todo) }
-  #    end
-  #  end
-  #end
-
 
   def destroy
     @todo = Todo.find(params[:id])
@@ -55,9 +51,21 @@ class TodosController < ApplicationController
     redirect_to todos_path
   end
 
+  def recover
+    @todo = Todo.only_deleted.find(params[:id])
+    @todo.restore
+    redirect_to todos_path
+  end
+
+  def purge
+    @todo = Todo.only_deleted.find(params[:id])
+    @todo.really_destroy!
+    redirect_to todos_path
+  end
+
   private
   def todo_params
-    params.require(:todo).permit(:item, :isCompleted, :tag_ids => [])
+    params.require(:todo).permit(:item, :tag_ids => [])
   end
 end
 
