@@ -1,0 +1,3 @@
+alert('The item id is :' + <%= @todo.id %>);
+
+$('#purge<%= @todo.id %>').closest('tr').fadeOut();

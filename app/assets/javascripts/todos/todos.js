@@ -19,6 +19,23 @@ $( document ).ready(function() {
             }
         });
     });
+
+    // $(".deleteItem").on("click",function () {
+    //     var todo_id = $(this).attr('id');
+    //     $.ajax({
+    //         url: "/todos/"+todo_id,
+    //         method: "DELETE",
+    //         success: function (data) {
+    //             alert("Destroy is  working!!");
+    //         },
+    //         error: function (error) {
+    //             alert(error);
+    //         }
+    //     });
+    // });
+
+
+
 });
 
 

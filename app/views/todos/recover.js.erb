@@ -1,0 +1,4 @@
+//debugger;
+alert('The item id is :' + <%= @todo.id %>);
+
+$('#recover<%= @todo.id %>').parent().html('<%= link_to "Destroy", @todo, method: :delete, data: { confirm: 'Are you sure?' } , id: "delete#{@todo.id}", remote: true %>');

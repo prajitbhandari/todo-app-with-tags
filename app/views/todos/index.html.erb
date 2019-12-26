@@ -9,51 +9,38 @@
   </thead>
 
   <tbody>
-  <% @count = 1 %>
-  <% @todos.each do |todo| %>
-    <tr>
-      <td><%= @count %></td>
-        <% if todo.isCompleted %>
-            <td class = "completed" style= "color:green;" id = "item<%=todo.id%>"> <%= todo.item %></td>
-        <% else %>
-            <td class = "uncompleted" style= "color:black;" id = "item<%=todo.id%>"><%= todo.item %></td>
-        <% end %>
-        <td><span class="markItem" id = "<%= todo.id%>">Mark as completed</span></td>
-        <td><%= link_to 'Show', todo %></td>
-        <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
-        <% if todo.deleted_at.nil? %>
-          <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% else %>
-        <td><%= link_to 'Recover', recover_todo_path(todo) , method: :put %></td>
-        <td><%= link_to 'Purge', purge_todo_path(todo) , method: :delete %></td>
-        <% end %>
-        <% @count+= 1 %>
-    </tr>
-  <% end %>
+      <% @todos.each do |todo| %>
+          <%= render partial: "todos/item", locals: { todo: todo }%>
+      <% end %>
   </tbody>
-
-<!--  <tbody>-->
-  <%# @count = 1 %>
-  <%# @todos.each do |todo| %>
-<!--    <tr>-->
-<!--      <td><%#= @count %></td>-->
-      <%# if todo.isCompleted %>
-<!--          <td class = "completed" style= "color:green;" id = "item<%#=todo.id%>"> <%#= todo.item %></td>-->
-      <%# else %>
-<!--          <td class = "uncompleted" style= "color:black;" id = "item<%#=todo.id%>"><%#= todo.item %></td>-->
-      <%# end %>
-<!--        <td><span class="markItem" id = "<%#= todo.id%>">Mark as completed</span></td>-->
-<!--        <td><%#= link_to 'Show', todo %></td>-->
-<!--        <td><%#= link_to 'Edit', edit_todo_path(todo) %></td>-->
-<!--        <td><%#= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
-      <%# @count+= 1 %>
-<!--    </tr>-->
-  <%# end %>
-<!--  </tbody>-->
 </table>
-
 <br>
 <%= link_to 'New Todo', new_todo_path %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!--<h1>Todos</h1>-->

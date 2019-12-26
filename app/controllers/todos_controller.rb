@@ -10,7 +10,7 @@ class TodosController < ApplicationController
   end
 
   def edit
-    @todo = Todo.find(params[:id])
+    @todo = Todo.with_deleted.find(params[:id])
   end
 
   def create
@@ -26,11 +26,11 @@ class TodosController < ApplicationController
   end
 
   def show
-    @todo = Todo.find(params[:id])
+    @todo = Todo.with_deleted.find(params[:id])
   end
 
   def update
-    @todo = Todo.find(params[:id])
+    @todo = Todo.with_deleted.find(params[:id])
     if request.xhr?
       @todo.isCompleted ? @todo.update_attribute(:isCompleted, false) : @todo.update_attribute(:isCompleted, true)
       respond_to do |format|
@@ -48,19 +48,25 @@ class TodosController < ApplicationController
   def destroy
     @todo = Todo.find(params[:id])
     @todo.destroy
-    redirect_to todos_path
+    #respond_to do |format|
+    #  format.js {}
+    #end
   end
 
   def recover
     @todo = Todo.only_deleted.find(params[:id])
     @todo.restore
-    redirect_to todos_path
+    #respond_to do |format|
+    #  format.js {}
+    #end
   end
 
   def purge
     @todo = Todo.only_deleted.find(params[:id])
     @todo.really_destroy!
-    redirect_to todos_path
+    #respond_to do |format|
+    #  format.js {}
+    #end
   end
 
   private
