@@ -10,7 +10,9 @@
 
   <tbody>
       <% @todos.each do |todo| %>
+        <tr>
           <%= render partial: "todos/item", locals: { todo: todo }%>
+        </tr>
       <% end %>
   </tbody>
 </table>

@@ -1,11 +1,10 @@
-alert('The item id is :' + <%= @todo.id %>);
+//alert('The item id is :' + <%#= @todo.id %>);
 
-$('#delete<%= @todo.id %>').parent().html(
-    '<%= link_to "Recover", recover_todo_path(@todo), method: :put, id: "recover#{@todo.id}", remote: true %>'
-)
-    .append('&nbsp;<%= link_to "Purge", purge_todo_path(@todo), method: :delete, data: { confirm: 'Are you sure?' } , id: "purge#{@todo.id}", remote: true %>'
-    );
+//var recover = '<%= link_to "Recover", recover_todo_path(@todo), method: :put, id: "recover#{@todo.id}", remote: true %>';
+//var purge =   '<td><%= link_to "Purge", purge_todo_path(@todo), method: :delete, id: "purge#{@todo.id}", remote: true %>\n</td>';
 
+//$('#delete<%= @todo.id %>').parent().html(recover).after(purge);
 
 
 
+$('#delete<%= @todo.id %>').closest('tr').html("<%= j render partial: 'todos/item', locals: { todo: @todo} %>");

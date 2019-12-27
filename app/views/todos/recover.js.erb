@@ -1,4 +1,9 @@
 //debugger;
-alert('The item id is :' + <%= @todo.id %>);
+//alert('The item id is :' + <%#= @todo.id %>);
 
-$('#recover<%= @todo.id %>').parent().html('<%= link_to "Destroy", @todo, method: :delete, data: { confirm: 'Are you sure?' } , id: "delete#{@todo.id}", remote: true %>');
+//var link_to_destroy = '<%= link_to "Destroy", @todo, method: :delete, data: { confirm: 'Are you sure?' } , id: "delete#{@todo.id}", remote: true %>';
+//$('#recover<%= @todo.id %>').parent().html(link_to_destroy);
+//$('#purge<%= @todo.id %>').remove();
+
+
+$('#recover<%= @todo.id %>').closest('tr').html("<%= j render partial: 'todos/item', locals: { todo: @todo} %>");
