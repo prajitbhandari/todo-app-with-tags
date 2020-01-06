@@ -2,6 +2,7 @@ require 'byebug'
 class TodosController < ApplicationController
 
   def index
+    #debugger
     @todos = Todo.with_deleted
   end
 
@@ -10,22 +11,28 @@ class TodosController < ApplicationController
   end
 
   def edit
+    #debugger
     @todo = Todo.with_deleted.find(params[:id])
   end
 
   def create
+    #debugger
     @todo = Todo.new(todo_params)
-    if @todo.save
-      redirect_to @todo
+    @todo.save
+    redirect_to todos_path
+    #redirect_to todos_path
+
+      #redirect_to @todo
       #   redirect_to todo_path(@todo)
       #   redirect_to todo_path(id: @todo.id)
       #   redirect_to "todos_path/#{@todo.id}"
-    else
-      redirect_to new_todo_path
-    end
+    #else
+    #  redirect_to new_todo_path
+    #end
   end
 
   def show
+    #debugger
     @todo = Todo.with_deleted.find(params[:id])
   end
 
@@ -34,13 +41,16 @@ class TodosController < ApplicationController
     if request.xhr?
       @todo.isCompleted ? @todo.update_attribute(:isCompleted, false) : @todo.update_attribute(:isCompleted, true)
       respond_to do |format|
+        #format.html {redirect_to todos_path}
         format.json { render json: {:todo => @todo } }
       end
     else
       if @todo.update(todo_params)
-        redirect_to @todo
+        respond_to do |format|
+          format.html{redirect_to @todo}
+        end
       else
-        redirect_to edit_todo_path(@todo)
+        render edit_todo_path(@todo)
       end
     end
   end

@@ -1,4 +1,3 @@
-
     <td><%= todo.id %></td>
     <% if todo.isCompleted %>
       <td class = "completed" style= "color:green;" id = "item<%=todo.id%>"> <%= todo.item %></td>
@@ -15,5 +14,4 @@
       <td><%= link_to 'Recover', recover_todo_path(todo) , method: :put , id: "recover#{todo.id}" , remote: true%></td>
       <td><%= link_to 'Purge', purge_todo_path(todo) , method: :delete , id: "purge#{todo.id}" , remote: true%></td>
     <% end %>
-
 

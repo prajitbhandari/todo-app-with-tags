@@ -5,5 +5,4 @@
 //$('#recover<%= @todo.id %>').parent().html(link_to_destroy);
 //$('#purge<%= @todo.id %>').remove();
 
-
 $('#recover<%= @todo.id %>').closest('tr').html("<%= j render partial: 'todos/item', locals: { todo: @todo} %>");
