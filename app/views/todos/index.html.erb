@@ -7,10 +7,9 @@
     <th colspan="3">Action</th>
   </tr>
   </thead>
-
   <tbody>
       <% @todos.each do |todo| %>
-        <tr>
+        <tr id= "todo_<%= todo.id%>">
           <%= render partial: "todos/item", locals: { todo: todo }%>
         </tr>
       <% end %>

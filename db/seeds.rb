@@ -90,19 +90,22 @@
 
 # Seeding using Faker
 
-Tag.destroy_all
-Todo.destroy_all
+#Tag.destroy_all
+#Todo.destroy_all
+#
+#5.times do
+#  Tag.create!(name: Faker::Food.description)
+#end
+#
+#10.times do
+#  array_of_all_tag_ids = Tag.pluck(:id).sample(1 + rand(Tag.all.size))
+#  Todo.create!(item: Faker::Food.dish, tag_ids: array_of_all_tag_ids)
+#end
+
 
 5.times do
-  Tag.create!(name: Faker::Food.description)
+  Todo.create!(item: Faker::Food.dish)
 end
-10.times do
-  array_of_all_tag_ids = Tag.pluck(:id).sample(1 + rand(Tag.all.size))
-  Todo.create!(item: Faker::Food.dish, tag_ids: array_of_all_tag_ids)
-end
-
-
-
 
 
 
