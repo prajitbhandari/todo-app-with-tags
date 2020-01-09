@@ -1,8 +1,9 @@
 require 'rails_helper'
-#require 'support/database_cleaner'
+require 'support/database_cleaner'
 require 'support/factory_bot_rails'
+
 RSpec.describe 'Todo App Crud Operation',js: true do
-  let(:subject_todo) { Todo.with_deleted.last }
+
   context 'when todo item is to be created' do
     it 'should create todo-item' do
       visit root_path
@@ -13,7 +14,6 @@ RSpec.describe 'Todo App Crud Operation',js: true do
       visit todos_path
       sleep 1
       new_todo_item = Todo.with_deleted.last
-      debugger
       within "tr#todo_#{new_todo_item.id}" do
         expect(page).to have_content(new_todo_item.id)
         expect(page).to have_content(new_todo_item.item)
@@ -22,11 +22,16 @@ RSpec.describe 'Todo App Crud Operation',js: true do
         expect(page).to have_link('Edit')
         expect(page).to have_link('Destroy')
       end
+      sleep 1
       expect { Todo.create(item: new_todo_item_name ) }.to change { Todo.count }.by(1)
     end
   end
 
   context 'when todo item is to be marked as complete' do
+    let(:subject_todo) { FactoryBot.create(:todo, item: "Item to be marked as completed!") }
+    before do
+      subject_todo
+    end
     it 'should mark the todo item' do
       visit root_path
       #debugger
@@ -38,31 +43,35 @@ RSpec.describe 'Todo App Crud Operation',js: true do
       sleep 2
       within "tr#todo_#{subject_todo.id}" do
         #debugger
-        if subject_todo.isCompleted
-          expect(page.find("#item#{subject_todo.id}").style('color').to_s).to eq("{\"color\"=>\"rgba(0, 0, 0, 1)\"}")
-          expect(subject_todo.reload.isCompleted).to be false
-        else
-          expect(page.find("#item#{subject_todo.id}").style('color').to_s).to eq("{\"color\"=>\"rgba(0, 128, 0, 1)\"}")
-          expect(subject_todo.reload.isCompleted).to be true
-        end
+        expect(page.find("#item#{subject_todo.id}").style('color').to_s).to eq("{\"color\"=>\"rgba(0, 128, 0, 1)\"}")
       end
       sleep 1
+      expect(subject_todo.reload.isCompleted).to be true
     end
   end
 
   context 'when specific todo item is to be displayed' do
+    let(:subject_todo) { FactoryBot.create(:todo, item: "Item to be marked as completed!") }
+    before do
+      subject_todo
+    end
     it 'should show indiviual item detail' do
       visit root_path
       within "tr#todo_#{subject_todo.id}" do
         click_on "Show"
       end
+      # TODO
       sleep 2
       visit  subject_todo
     end
   end
 
   context 'when todo item is to be edited' do
-    it 'should modify the indiviual item ' do
+    let(:subject_todo) { FactoryBot.create(:todo, item: "Item to be marked as completed!") }
+    before do
+      subject_todo
+    end
+    it 'should update the indiviual item ' do
       visit root_path
       within "tr#todo_#{subject_todo.id}" do
         click_on "Edit"
@@ -84,6 +93,10 @@ RSpec.describe 'Todo App Crud Operation',js: true do
   end
 
   context 'when todo item is to be deleted' do
+    let(:subject_todo) { FactoryBot.create(:todo, item: "Item to be marked as completed!") }
+    before do
+      subject_todo
+    end
     #let!(:todo_items) { 5.times {|i| FactoryBot.create(:todo, item: "Todo item #{i}") } }
     it 'should soft-delete' do
       visit root_path
@@ -108,6 +121,10 @@ RSpec.describe 'Todo App Crud Operation',js: true do
   end
 
   context 'when todo item is to be recovered' do
+    let(:subject_todo) { FactoryBot.create(:todo, item: "Item to be marked as completed!") }
+    before do
+      subject_todo.destroy!
+    end
     it 'should soft-recover' do
       visit root_path
       within "tr#todo_#{subject_todo.id}" do
@@ -126,23 +143,23 @@ RSpec.describe 'Todo App Crud Operation',js: true do
   end
 
   context 'when todo item is to be purged' do
+    let(:subject_todo) { FactoryBot.create(:todo, item: "Item to be marked as completed!") }
+    before do
+      subject_todo.destroy!
+    end
     it 'should soft-purge' do
       visit root_path
       page_count = page.all(".markItem").size
-      todo_count_before = Todo.with_deleted.count
       within "tr#todo_#{subject_todo.id}" do
         click_on "Purge"
       end
       page.driver.browser.switch_to.alert.accept
       sleep 2
-      todo_count_after = Todo.with_deleted.count
       expect(page.all(".markItem").size).to eq(page_count-1)
       Rails.logger.warn "*" * 80
       sleep 1 #Wait for backend to complete the soft-delete request
       #debugger
-      #expect { Todo.find(subject_todo.id) }.to raise_error ActiveRecord::RecordNotFound
-      expect(todo_count_before-1).to eq(todo_count_after)
-      #expect { todo_before.really_destroy! }.to change { todo_count_before }.by(1)
+      expect { Todo.find(subject_todo.id) }.to raise_error ActiveRecord::RecordNotFound
     end
   end
 end
