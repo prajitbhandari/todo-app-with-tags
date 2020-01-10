@@ -61064,3 +61064,327 @@ Processing by TodosController#index as HTML
 Completed 200 OK in 42ms (Views: 40.9ms | ActiveRecord: 0.2ms)
 
 
+Started GET "/todos/5" for ::1 at 2020-01-09 17:35:59 +0545
+Processing by TodosController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mTodo Load (0.2ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:35
+  Rendering todos/show.html.erb within layouts/application
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "tags_todos" ON "tags"."id" = "tags_todos"."tag_id" WHERE "tags_todos"."todo_id" = ?[0m  [["todo_id", 5]]
+  ↳ app/views/todos/show.html.erb:9
+  Rendered todos/show.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 39ms (Views: 35.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/todos/8/edit" for ::1 at 2020-01-09 17:36:30 +0545
+Processing by TodosController#edit as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mTodo Load (0.1ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:15
+  Rendering todos/edit.html.erb within layouts/application
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  ↳ app/views/todos/edit.html.erb:10
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "tags_todos" ON "tags"."id" = "tags_todos"."tag_id" WHERE "tags_todos"."todo_id" = ?[0m  [["todo_id", 8]]
+  ↳ app/views/todos/edit.html.erb:10
+  Rendered todos/edit.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 39ms (Views: 36.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/todos/5/edit" for ::1 at 2020-01-09 17:36:56 +0545
+Processing by TodosController#edit as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mTodo Load (0.1ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:15
+  Rendering todos/edit.html.erb within layouts/application
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  ↳ app/views/todos/edit.html.erb:10
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "tags_todos" ON "tags"."id" = "tags_todos"."tag_id" WHERE "tags_todos"."todo_id" = ?[0m  [["todo_id", 5]]
+  ↳ app/views/todos/edit.html.erb:10
+  Rendered todos/edit.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 39ms (Views: 35.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/todos/5/edit" for ::1 at 2020-01-09 17:37:12 +0545
+Processing by TodosController#edit as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mTodo Load (0.2ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:15
+  Rendering todos/edit.html.erb within layouts/application
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  ↳ app/views/todos/edit.html.erb:10
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "tags_todos" ON "tags"."id" = "tags_todos"."tag_id" WHERE "tags_todos"."todo_id" = ?[0m  [["todo_id", 5]]
+  ↳ app/views/todos/edit.html.erb:10
+  Rendered todos/edit.html.erb within layouts/application (7.5ms)
+Completed 200 OK in 54ms (Views: 50.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/todos/5" for ::1 at 2020-01-09 17:37:15 +0545
+Processing by TodosController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mTodo Load (0.2ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:35
+  Rendering todos/show.html.erb within layouts/application
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "tags_todos" ON "tags"."id" = "tags_todos"."tag_id" WHERE "tags_todos"."todo_id" = ?[0m  [["todo_id", 5]]
+  ↳ app/views/todos/show.html.erb:9
+  Rendered todos/show.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 44ms (Views: 41.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/todos/5" for ::1 at 2020-01-09 17:40:23 +0545
+Processing by TodosController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mTodo Load (0.1ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:35
+  Rendering todos/show.html.erb within layouts/application
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "tags_todos" ON "tags"."id" = "tags_todos"."tag_id" WHERE "tags_todos"."todo_id" = ?[0m  [["todo_id", 5]]
+  ↳ app/views/todos/show.html.erb:9
+  Rendered todos/show.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 62ms (Views: 60.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/todos/5" for ::1 at 2020-01-09 17:40:25 +0545
+Processing by TodosController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mTodo Load (0.2ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:35
+  Rendering todos/show.html.erb within layouts/application
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "tags_todos" ON "tags"."id" = "tags_todos"."tag_id" WHERE "tags_todos"."todo_id" = ?[0m  [["todo_id", 5]]
+  ↳ app/views/todos/show.html.erb:9
+  Rendered todos/show.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 68ms (Views: 64.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for ::1 at 2020-01-09 17:40:27 +0545
+Processing by TodosController#index as HTML
+  Rendering todos/index.html.erb within layouts/application
+  [1m[36mTodo Load (0.3ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/views/todos/index.html.erb:11
+  Rendered todos/_item.html.erb (2.1ms)
+  Rendered todos/_item.html.erb (0.4ms)
+  Rendered todos/_item.html.erb (0.3ms)
+  Rendered todos/_item.html.erb (0.2ms)
+  Rendered todos/_item.html.erb (0.3ms)
+  Rendered todos/_item.html.erb (0.2ms)
+  Rendered todos/_item.html.erb (0.2ms)
+  Rendered todos/_item.html.erb (0.2ms)
+  Rendered todos/index.html.erb within layouts/application (41.2ms)
+Completed 200 OK in 69ms (Views: 67.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/todos/7" for ::1 at 2020-01-09 17:40:29 +0545
+Processing by TodosController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mTodo Load (0.1ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:35
+  Rendering todos/show.html.erb within layouts/application
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "tags_todos" ON "tags"."id" = "tags_todos"."tag_id" WHERE "tags_todos"."todo_id" = ?[0m  [["todo_id", 7]]
+  ↳ app/views/todos/show.html.erb:9
+  Rendered todos/show.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 42ms (Views: 39.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/todos/7/edit" for ::1 at 2020-01-09 17:43:10 +0545
+Processing by TodosController#edit as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mTodo Load (0.2ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:15
+  Rendering todos/edit.html.erb within layouts/application
+  [1m[36mTag Load (0.6ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  ↳ app/views/todos/edit.html.erb:10
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "tags_todos" ON "tags"."id" = "tags_todos"."tag_id" WHERE "tags_todos"."todo_id" = ?[0m  [["todo_id", 7]]
+  ↳ app/views/todos/edit.html.erb:10
+  Rendered todos/edit.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 32ms (Views: 28.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/todos/5/edit" for ::1 at 2020-01-09 17:43:12 +0545
+Processing by TodosController#edit as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mTodo Load (0.1ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:15
+  Rendering todos/edit.html.erb within layouts/application
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  ↳ app/views/todos/edit.html.erb:10
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "tags_todos" ON "tags"."id" = "tags_todos"."tag_id" WHERE "tags_todos"."todo_id" = ?[0m  [["todo_id", 5]]
+  ↳ app/views/todos/edit.html.erb:10
+  Rendered todos/edit.html.erb within layouts/application (6.7ms)
+Completed 200 OK in 41ms (Views: 38.5ms | ActiveRecord: 0.4ms)
+
+
+Started PATCH "/todos/5" for ::1 at 2020-01-09 17:43:14 +0545
+Processing by TodosController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ex+SinAi/zfa5w3s/njh9eVu5KqsCVWrtgxTMX93wP8ucXOE6K8vh1TyhNEonafOQ3t0JYFUfyDzwu300wv71A==", "todo"=>{"item"=>"Fish and Chips", "tag_ids"=>["", "4", "5"]}, "commit"=>"Update Todo", "id"=>"5"}
+  [1m[36mTodo Load (0.1ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:39
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/todos_controller.rb:47
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" IN (?, ?)[0m  [["id", 4], ["id", 5]]
+  ↳ app/controllers/todos_controller.rb:47
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "tags_todos" ON "tags"."id" = "tags_todos"."tag_id" WHERE "tags_todos"."todo_id" = ?[0m  [["todo_id", 5]]
+  ↳ app/controllers/todos_controller.rb:47
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/todos_controller.rb:47
+Redirected to http://localhost:3000/todos/5
+Completed 302 Found in 8ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/todos/5" for ::1 at 2020-01-09 17:43:14 +0545
+Processing by TodosController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mTodo Load (0.1ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:35
+  Rendering todos/show.html.erb within layouts/application
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "tags_todos" ON "tags"."id" = "tags_todos"."tag_id" WHERE "tags_todos"."todo_id" = ?[0m  [["todo_id", 5]]
+  ↳ app/views/todos/show.html.erb:7
+  Rendered todos/show.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 21ms (Views: 19.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2020-01-09 17:43:19 +0545
+Processing by TodosController#index as HTML
+  Rendering todos/index.html.erb within layouts/application
+  [1m[36mTodo Load (0.1ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/views/todos/index.html.erb:11
+  Rendered todos/_item.html.erb (1.1ms)
+  Rendered todos/_item.html.erb (0.3ms)
+  Rendered todos/_item.html.erb (0.3ms)
+  Rendered todos/_item.html.erb (0.2ms)
+  Rendered todos/_item.html.erb (1.3ms)
+  Rendered todos/_item.html.erb (0.5ms)
+  Rendered todos/_item.html.erb (1.3ms)
+  Rendered todos/_item.html.erb (0.4ms)
+  Rendered todos/index.html.erb within layouts/application (44.3ms)
+Completed 200 OK in 75ms (Views: 72.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/todos/5" for ::1 at 2020-01-09 17:43:20 +0545
+Processing by TodosController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mTodo Load (0.2ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:35
+  Rendering todos/show.html.erb within layouts/application
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "tags_todos" ON "tags"."id" = "tags_todos"."tag_id" WHERE "tags_todos"."todo_id" = ?[0m  [["todo_id", 5]]
+  ↳ app/views/todos/show.html.erb:7
+  Rendered todos/show.html.erb within layouts/application (24.2ms)
+Completed 200 OK in 61ms (Views: 57.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/todos/14" for ::1 at 2020-01-09 18:05:10 +0545
+Processing by TodosController#show as HTML
+  Parameters: {"id"=>"14"}
+  [1m[36mTodo Load (0.6ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:35
+  Rendering todos/show.html.erb within layouts/application
+  [1m[36mTag Load (0.7ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "tags_todos" ON "tags"."id" = "tags_todos"."tag_id" WHERE "tags_todos"."todo_id" = ?[0m  [["todo_id", 14]]
+  ↳ app/views/todos/show.html.erb:7
+  Rendered todos/show.html.erb within layouts/application (7.4ms)
+Completed 200 OK in 79ms (Views: 71.7ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/todos/14/edit" for ::1 at 2020-01-09 18:05:17 +0545
+Processing by TodosController#edit as HTML
+  Parameters: {"id"=>"14"}
+  [1m[36mTodo Load (0.1ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:15
+  Rendering todos/edit.html.erb within layouts/application
+  [1m[36mTag Load (0.3ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  ↳ app/views/todos/edit.html.erb:10
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "tags_todos" ON "tags"."id" = "tags_todos"."tag_id" WHERE "tags_todos"."todo_id" = ?[0m  [["todo_id", 14]]
+  ↳ app/views/todos/edit.html.erb:10
+  Rendered todos/edit.html.erb within layouts/application (40.1ms)
+Completed 200 OK in 65ms (Views: 61.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for ::1 at 2020-01-10 12:05:25 +0545
+Processing by TodosController#index as HTML
+  Rendering todos/index.html.erb within layouts/application
+  [1m[36mTodo Load (15.8ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/views/todos/index.html.erb:11
+  Rendered todos/_item.html.erb (354.6ms)
+Started GET "/todos/10/edit" for ::1 at 2020-01-10 12:05:27 +0545
+  Rendered todos/_item.html.erb (1.6ms)
+  Rendered todos/_item.html.erb (3.6ms)
+Processing by TodosController#edit as HTML
+  Parameters: {"id"=>"10"}
+  Rendered todos/_item.html.erb (2.1ms)
+  Rendered todos/_item.html.erb (3.9ms)
+  [1m[36mTodo Load (14.5ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:15
+  Rendered todos/_item.html.erb (2.6ms)
+  Rendered todos/_item.html.erb (2.2ms)
+  Rendered todos/_item.html.erb (2.7ms)
+  Rendered todos/index.html.erb within layouts/application (1844.6ms)
+  Rendering todos/edit.html.erb within layouts/application
+  [1m[36mTag Load (58.5ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  ↳ app/views/todos/edit.html.erb:10
+  [1m[35m (31.9ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "tags_todos" ON "tags"."id" = "tags_todos"."tag_id" WHERE "tags_todos"."todo_id" = ?[0m  [["todo_id", 10]]
+  ↳ app/views/todos/edit.html.erb:10
+  Rendered todos/edit.html.erb within layouts/application (1460.3ms)
+Completed 200 OK in 6116ms (Views: 5709.6ms | ActiveRecord: 15.8ms)
+
+
+Completed 200 OK in 4341ms (Views: 3767.4ms | ActiveRecord: 104.9ms)
+
+
+Started GET "/todos/11/edit" for ::1 at 2020-01-10 12:05:37 +0545
+Processing by TodosController#edit as HTML
+  Parameters: {"id"=>"11"}
+  [1m[36mTodo Load (0.2ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:15
+  Rendering todos/edit.html.erb within layouts/application
+  [1m[36mTag Load (0.6ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  ↳ app/views/todos/edit.html.erb:10
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "tags_todos" ON "tags"."id" = "tags_todos"."tag_id" WHERE "tags_todos"."todo_id" = ?[0m  [["todo_id", 11]]
+  ↳ app/views/todos/edit.html.erb:10
+  Rendered todos/edit.html.erb within layouts/application (59.0ms)
+Completed 200 OK in 266ms (Views: 231.2ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/todos/5" for ::1 at 2020-01-10 12:23:59 +0545
+Processing by TodosController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mTodo Load (0.9ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:35
+  Rendering todos/show.html.erb within layouts/application
+  [1m[36mTag Load (0.8ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "tags_todos" ON "tags"."id" = "tags_todos"."tag_id" WHERE "tags_todos"."todo_id" = ?[0m  [["todo_id", 5]]
+  ↳ app/views/todos/show.html.erb:7
+  Rendered todos/show.html.erb within layouts/application (27.3ms)
+Completed 200 OK in 217ms (Views: 207.2ms | ActiveRecord: 1.7ms)
+
+
+  [1m[36mTodo Load (1.2ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."deleted_at" IS NULL LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "todos"."id" FROM "todos" WHERE "todos"."deleted_at" IS NULL[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "todos"."id", "todos"."item" FROM "todos" WHERE "todos"."deleted_at" IS NULL[0m
+  [1m[36mTodo Load (0.7ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."deleted_at" IS NULL LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mTodo Load (0.7ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."deleted_at" IS NULL ORDER BY "todos"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/" for ::1 at 2020-01-10 13:13:56 +0545
+Processing by TodosController#index as HTML
+  Rendering todos/index.html.erb within layouts/application
+  [1m[36mTodo Load (1.3ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/views/todos/index.html.erb:11
+  Rendered todos/_item.html.erb (49.1ms)
+  Rendered todos/_item.html.erb (1.4ms)
+  Rendered todos/_item.html.erb (1.4ms)
+  Rendered todos/_item.html.erb (1.0ms)
+  Rendered todos/_item.html.erb (1.3ms)
+  Rendered todos/_item.html.erb (1.0ms)
+  Rendered todos/_item.html.erb (1.1ms)
+  Rendered todos/_item.html.erb (0.9ms)
+  Rendered todos/index.html.erb within layouts/application (492.2ms)
+Completed 200 OK in 1480ms (Views: 793.3ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/todos/5/edit" for ::1 at 2020-01-10 13:14:46 +0545
+Processing by TodosController#edit as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mTodo Load (0.2ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:15
+  Rendering todos/edit.html.erb within layouts/application
+  [1m[36mTag Load (9.7ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  ↳ app/views/todos/edit.html.erb:10
+  [1m[35m (10.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "tags_todos" ON "tags"."id" = "tags_todos"."tag_id" WHERE "tags_todos"."todo_id" = ?[0m  [["todo_id", 5]]
+  ↳ app/views/todos/edit.html.erb:10
+  Rendered todos/edit.html.erb within layouts/application (660.5ms)
+Completed 200 OK in 1132ms (Views: 1076.7ms | ActiveRecord: 22.6ms)
+
+

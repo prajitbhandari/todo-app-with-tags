@@ -57,25 +57,16 @@ class TodosController < ApplicationController
   def destroy
     @todo = Todo.find(params[:id])
     @todo.destroy
-    #respond_to do |format|
-    #  format.js {}
-    #end
   end
 
   def recover
     @todo = Todo.only_deleted.find(params[:id])
     @todo.restore
-    #respond_to do |format|
-    #  format.js {}
-    #end
   end
 
   def purge
     @todo = Todo.only_deleted.find(params[:id])
     @todo.really_destroy!
-    #respond_to do |format|
-    #  format.js {}
-    #end
   end
 
   private

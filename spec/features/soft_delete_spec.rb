@@ -22,7 +22,7 @@ RSpec.describe 'Todo App Crud Operation',js: true do
         expect(page).to have_link('Edit')
         expect(page).to have_link('Destroy')
       end
-      sleep 1
+      #sleep 1
       expect { Todo.create(item: new_todo_item_name ) }.to change { Todo.count }.by(1)
     end
   end
@@ -34,7 +34,6 @@ RSpec.describe 'Todo App Crud Operation',js: true do
     end
     it 'should mark the todo item' do
       visit root_path
-      #debugger
       within "tr#todo_#{subject_todo.id}" do
         find('.markItem').click
       end
@@ -42,7 +41,6 @@ RSpec.describe 'Todo App Crud Operation',js: true do
       page.driver.browser.switch_to.alert.accept
       sleep 2
       within "tr#todo_#{subject_todo.id}" do
-        #debugger
         expect(page.find("#item#{subject_todo.id}").style('color').to_s).to eq("{\"color\"=>\"rgba(0, 128, 0, 1)\"}")
       end
       sleep 1
@@ -52,24 +50,35 @@ RSpec.describe 'Todo App Crud Operation',js: true do
 
   context 'when specific todo item is to be displayed' do
     let(:subject_todo) { FactoryBot.create(:todo, item: "Item to be marked as completed!") }
+    let(:subject_todo_tags) { subject_todo.tags.all.each { |tag| tag.name } }
     before do
       subject_todo
+      subject_todo_tags
     end
     it 'should show indiviual item detail' do
       visit root_path
       within "tr#todo_#{subject_todo.id}" do
         click_on "Show"
       end
-      # TODO
-      sleep 2
-      visit  subject_todo
+      visit todo_path(subject_todo)
+      sleep 1
+      within('strong') do
+        expect(page).to have_content('Item:')
+      end
+      expect(page).to have_content(subject_todo.item)
+      expect(page).to have_link("Edit")
+      expect(page).to have_link("Back")
+      expect(page).to have_content("The checked Tags are:")
+      expect(page).to have_content(subject_todo_tags) if subject_todo_tags.present?
     end
   end
 
   context 'when todo item is to be edited' do
     let(:subject_todo) { FactoryBot.create(:todo, item: "Item to be marked as completed!") }
+    let(:subject_tag ) { 5.times{ FactoryBot.create(:tag, name: "Tag #{i}" )}}
     before do
       subject_todo
+      subject_tag
     end
     it 'should update the indiviual item ' do
       visit root_path
@@ -78,8 +87,11 @@ RSpec.describe 'Todo App Crud Operation',js: true do
       end
       sleep 1
       visit  edit_todo_path(subject_todo.id)
+      debugger
       updated_item = Faker::Food.dish
       fill_in('todo_item', :with => updated_item)
+      # Todo with tags associated with it
+
       click_on "Update Todo"
       sleep 2
       visit subject_todo
@@ -97,7 +109,6 @@ RSpec.describe 'Todo App Crud Operation',js: true do
     before do
       subject_todo
     end
-    #let!(:todo_items) { 5.times {|i| FactoryBot.create(:todo, item: "Todo item #{i}") } }
     it 'should soft-delete' do
       visit root_path
       within "tr#todo_#{subject_todo.id}" do
@@ -108,13 +119,9 @@ RSpec.describe 'Todo App Crud Operation',js: true do
         expect(page).to have_no_link('Destroy')   # checking for front end section
         expect(page).to have_link('Recover')
         expect(page).to have_link('Purge')
-        #TODO:
-        # - check destroy link is not available
-        # - check recover link has appeared
-        # - check purge link has appeared
       end
-      Rails.logger.warn "*" * 80
-      sleep 1 #Wait for backend to complete the soft-delete request
+      #Rails.logger.warn "*" * 80
+      #sleep 1 #Wait for backend t/o complete the soft-delete request
       expect(subject_todo.reload.deleted_at).not_to be nil
       expect(subject_todo.reload.deleted_at).to be_kind_of(ActiveSupport::TimeWithZone)
     end
@@ -136,7 +143,7 @@ RSpec.describe 'Todo App Crud Operation',js: true do
         expect(page).to have_no_link('Purge')
         expect(page).to have_link('Destroy')
       end
-      Rails.logger.warn "*" * 80
+      #Rails.logger.warn "*" * 80
       sleep 1 #Wait for backend to complete the soft-delete request
       expect(subject_todo.reload.deleted_at).to be nil
     end
@@ -156,9 +163,7 @@ RSpec.describe 'Todo App Crud Operation',js: true do
       page.driver.browser.switch_to.alert.accept
       sleep 2
       expect(page.all(".markItem").size).to eq(page_count-1)
-      Rails.logger.warn "*" * 80
       sleep 1 #Wait for backend to complete the soft-delete request
-      #debugger
       expect { Todo.find(subject_todo.id) }.to raise_error ActiveRecord::RecordNotFound
     end
   end

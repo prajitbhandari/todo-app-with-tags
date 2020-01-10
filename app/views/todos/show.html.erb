@@ -1,11 +1,9 @@
-<p>
-  <strong>Item:</strong>
-  <%= @todo.item %>
-  <%= link_to 'Edit', edit_todo_path(@todo)%>
-  <%= link_to 'Back', todos_path %>
-</p>
-<p> The checked Tags are:</p>
+<span>  <strong>Item:</strong> </span>
+<span>  <%= @todo.item %> </span>
+<span>  <%= link_to 'Edit', edit_todo_path(@todo)%> </span>
+<span>  <%= link_to 'Back', todos_path %> </span>
 
+<p> The checked Tags are:</p>
 <% @todo.tags.all.each do |t| %>
     <%= t.name %>
     <br>
