@@ -61388,3 +61388,56 @@ Processing by TodosController#edit as HTML
 Completed 200 OK in 1132ms (Views: 1076.7ms | ActiveRecord: 22.6ms)
 
 
+Started GET "/" for ::1 at 2020-01-10 16:41:49 +0545
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/prajit/.rbenv/versions/2.6.1/lib/ruby/gems/2.6.0/gems/activerecord-5.2.4.1/lib/active_record/log_subscriber.rb:98
+Processing by TodosController#index as HTML
+  Rendering todos/index.html.erb within layouts/application
+  [1m[36mTodo Load (0.2ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/views/todos/index.html.erb:11
+  Rendered todos/_item.html.erb (1.3ms)
+  Rendered todos/_item.html.erb (0.4ms)
+  Rendered todos/_item.html.erb (0.4ms)
+  Rendered todos/_item.html.erb (0.3ms)
+  Rendered todos/_item.html.erb (0.3ms)
+  Rendered todos/_item.html.erb (0.2ms)
+  Rendered todos/_item.html.erb (0.2ms)
+  Rendered todos/_item.html.erb (0.2ms)
+  Rendered todos/index.html.erb within layouts/application (14.3ms)
+Completed 200 OK in 1506ms (Views: 1494.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for ::1 at 2020-01-10 16:42:42 +0545
+Processing by TodosController#index as HTML
+  Rendering todos/index.html.erb within layouts/application
+  [1m[36mTodo Load (1.1ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/views/todos/index.html.erb:11
+  Rendered todos/_item.html.erb (3.6ms)
+  Rendered todos/_item.html.erb (0.6ms)
+  Rendered todos/_item.html.erb (0.3ms)
+  Rendered todos/_item.html.erb (0.3ms)
+  Rendered todos/_item.html.erb (0.3ms)
+  Rendered todos/_item.html.erb (0.2ms)
+  Rendered todos/_item.html.erb (0.2ms)
+  Rendered todos/_item.html.erb (0.8ms)
+  Rendered todos/index.html.erb within layouts/application (14.1ms)
+Completed 200 OK in 93ms (Views: 90.8ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/" for ::1 at 2020-01-10 16:43:01 +0545
+Processing by TodosController#index as HTML
+  Rendering todos/index.html.erb within layouts/application
+  [1m[36mTodo Load (0.1ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/views/todos/index.html.erb:11
+  Rendered todos/_item.html.erb (1.8ms)
+  Rendered todos/_item.html.erb (0.6ms)
+  Rendered todos/_item.html.erb (0.4ms)
+  Rendered todos/_item.html.erb (0.6ms)
+  Rendered todos/_item.html.erb (0.7ms)
+  Rendered todos/_item.html.erb (1.4ms)
+  Rendered todos/_item.html.erb (0.4ms)
+  Rendered todos/_item.html.erb (0.6ms)
+  Rendered todos/index.html.erb within layouts/application (15.2ms)
+Completed 200 OK in 125ms (Views: 123.0ms | ActiveRecord: 0.1ms)
+
+
