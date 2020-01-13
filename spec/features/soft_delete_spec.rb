@@ -114,14 +114,16 @@ RSpec.describe 'Todo App Crud Operation',js: true do
       within "tr#todo_#{subject_todo.id}" do
         click_on "Destroy"
       end
-      page.driver.browser.switch_to.alert.accept
+      sleep 1
+      #page.driver.browser.switch_to.alert.accept
+      click_button 'Ok'
+      sleep 1
+      click_button 'OK'
       within "tr#todo_#{subject_todo.id}" do
-        expect(page).to have_no_link('Destroy')   # checking for front end section
+        expect(page).to have_no_link('Destroy') #checking for front end section
         expect(page).to have_link('Recover')
         expect(page).to have_link('Purge')
       end
-      #Rails.logger.warn "*" * 80
-      #sleep 1 #Wait for backend t/o complete the soft-delete request
       expect(subject_todo.reload.deleted_at).not_to be nil
       expect(subject_todo.reload.deleted_at).to be_kind_of(ActiveSupport::TimeWithZone)
     end
@@ -137,7 +139,11 @@ RSpec.describe 'Todo App Crud Operation',js: true do
       within "tr#todo_#{subject_todo.id}" do
         click_on "Recover"
       end
-      page.driver.browser.switch_to.alert.accept
+      sleep 1
+      #page.driver.browser.switch_to.alert.accept
+      click_button 'Ok'
+      sleep 1
+      click_button 'OK'
       within "tr#todo_#{subject_todo.id}" do
         expect(page).to have_no_link('Recover')   # checking for front end section
         expect(page).to have_no_link('Purge')
@@ -160,7 +166,11 @@ RSpec.describe 'Todo App Crud Operation',js: true do
       within "tr#todo_#{subject_todo.id}" do
         click_on "Purge"
       end
-      page.driver.browser.switch_to.alert.accept
+      sleep 1
+      #page.driver.browser.switch_to.alert.accept
+      click_button 'Ok'
+      sleep 1
+      click_button 'OK'
       sleep 2
       expect(page.all(".markItem").size).to eq(page_count-1)
       sleep 1 #Wait for backend to complete the soft-delete request
