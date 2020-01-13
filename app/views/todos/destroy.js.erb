@@ -6,5 +6,6 @@
 //$('#delete<%= @todo.id %>').parent().html(recover).after(purge);
 
 
-
+//------------------------Above Section is commented out-----------------------
+swal("Good job!", "You Destroyed the Item Successfully!", "success");
 $('#delete<%= @todo.id %>').closest('tr').html("<%=j render partial: 'todos/item', locals: { todo: @todo} %>");

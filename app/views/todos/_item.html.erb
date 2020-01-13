@@ -9,9 +9,12 @@
 <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
 
 <% if todo.deleted_at.nil? %>
-  <td><%= link_to 'Destroy', todo, method: :delete, data: {confirm: "Are you sure you want to destroy TodoId = #{todo.id} ?"} , id: "delete#{todo.id}", remote: true%></td>
+  <td><%= link_to 'Destroy', todo, method: :delete, data: {confirm: "Are you sure you want to destroy?", 'confirm-button-color': '#66CD00', 'sweet-alert-type': 'info'} , class: "delete", id: "delete#{todo.id}", remote: true %></td>
 <% else %>
-  <td><%= link_to 'Recover', recover_todo_path(todo) ,data: {confirm: "Are you sure you want to Recover TodoId = #{todo.id} ?"},  method: :put , id: "recover#{todo.id}" , remote: true%></td>
-  <td><%= link_to 'Purge', purge_todo_path(todo) , data: {confirm: "Are you sure you want to Purge TodoId = #{todo.id} ?"}, method: :delete , id: "purge#{todo.id}" , remote: true%></td>
+  <td><%= link_to 'Recover', recover_todo_path(todo) ,data: {confirm: "Are you sure you want to Recover TodoId = #{todo.id} ?", 'confirm-button-color': '#66CD00', 'sweet-alert-type': 'info'},  method: :put , id: "recover#{todo.id}" , remote: true %></td>
+  <td><%= link_to 'Purge', purge_todo_path(todo) , data: {confirm: "Are you sure you want to Purge TodoId = #{todo.id} ?", 'confirm-button-color': '#66CD00', 'sweet-alert-type': 'info'}, method: :delete , id: "purge#{todo.id}" , remote: true %></td>
 <% end %>
+
+
+
 

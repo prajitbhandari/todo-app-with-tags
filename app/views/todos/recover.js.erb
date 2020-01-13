@@ -5,4 +5,6 @@
 //$('#recover<%= @todo.id %>').parent().html(link_to_destroy);
 //$('#purge<%= @todo.id %>').remove();
 
+
+swal("Good job!", "You Recovered the Item Successfully!", "success");
 $('#recover<%= @todo.id %>').closest('tr').html("<%= j render partial: 'todos/item', locals: { todo: @todo} %>");

@@ -12,6 +12,6 @@
  *
  *= require_tree .
  *= require_self
- *= require select2
  *= require sweetalert2
+ *= require select2
  */
