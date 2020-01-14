@@ -13,14 +13,6 @@ RSpec.describe Todo, type: :model do
       expect(todo).to_not be_valid
       expect(todo.errors.full_messages).to eq(["Item can't be blank"])
     end
-
-    #it "is not valid without a created_date" do
-    #  todo = Todo.new
-    #  todo.item = "Todo Item "
-    #  expect(todo.valid?).to be false
-    #  expect(todo.errors.keys).to eq [:created_at]
-    #  expect(todo.errors.full_messages).to eq "Todo Item created at must be present"
-    #end
   end
 
   context "When todo item is to be displayed" do
@@ -36,8 +28,10 @@ RSpec.describe Todo, type: :model do
 
   context "when todo item is to be updated" do
     let(:subject_todo) { FactoryBot.create(:todo, item: "Todo Item!!! ")}
+    let(:subject_tag) { FactoryBot.create(:tag, name: "Tag Name!!! ")}
     before do
       subject_todo
+      subject_tag
     end
     it "should update the todo item" do
       subject_todo.item =  "updated Todo Item!!"
@@ -49,17 +43,19 @@ RSpec.describe Todo, type: :model do
       subject_todo.save
       expect(subject_todo).to be_valid
     end
-
     it "should not update the todo item to be nil" do
       subject_todo.item = nil
       subject_todo.save
       expect(subject_todo).to_not be_valid
     end
-
     it "should not update the todo completion  to be nil" do
       subject_todo.isCompleted = nil
       subject_todo.save
       expect(subject_todo).to_not be_valid
+    end
+    it "should update associated todo tags" do
+      subject_todo.tag_ids = subject_tag.id
+      expect(subject_todo).to be_valid
     end
   end
 
@@ -73,6 +69,9 @@ RSpec.describe Todo, type: :model do
       expect(subject_todo.deleted_at).to_not  be nil
       expect(subject_todo.deleted_at).to be_kind_of(ActiveSupport::TimeWithZone)
     end
+    it "should not destroy nil or empty todo item " do
+      expect{Todo.with_deleted.find(123).destroy!}.to raise_error ActiveRecord::RecordNotFound
+    end
   end
 
   context "when todo item is to be recovered" do
@@ -83,6 +82,9 @@ RSpec.describe Todo, type: :model do
     it "should recover destroyed todo item" do
       subject_todo.restore
       expect(subject_todo.deleted_at).to eq nil
+    end
+    it "should not recover nil or empty todo item " do
+      expect{Todo.with_deleted.find(123).restore}.to raise_error ActiveRecord::RecordNotFound
     end
   end
 
@@ -95,86 +97,21 @@ RSpec.describe Todo, type: :model do
       subject_todo.really_destroy!
       expect{Todo.with_deleted.find(subject_todo.id)}.to raise_error ActiveRecord::RecordNotFound
     end
+    it "should not purge nil or empty todo item " do
+      expect{Todo.with_deleted.find(123).really_destroy!}.to raise_error ActiveRecord::RecordNotFound
+    end
+  end
+
+  context "when association is to be done" do
+    let(:subject_tag){FactoryBot.create(:tag, name: "Tag created!")}
+    before do
+      subject_tag
+    end
+    it "should have associcated todo tags" do
+      todo = Todo.new(item: "Todo Item !!!", tag_ids: subject_tag.id)
+      todo.save
+      expect(todo).to be_valid
+    end
   end
 end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#require 'rails_helper'
-#
-#RSpec.describe Todo, type: :model do
-#  context "when todo is to be created" do
-#    it "is not valid without todo item " do
-#      todo = Todo.new(item: nil)
-#      todo.save
-#      expect(todo.errors.keys).to include(:item)
-#      expect(todo.errors.full_messages).to eq(["Item can't be blank"])
-#    end
-#    it "is valid to be created" do
-#      todo = Todo.new(item: "Some text for todo item")
-#      todo.save
-#      expect(todo).to be_valid, "Todo item is valid"
-#    end
-#  end
-#end

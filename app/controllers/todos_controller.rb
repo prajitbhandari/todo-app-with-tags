@@ -20,7 +20,6 @@ class TodosController < ApplicationController
     @todo = Todo.new(todo_params)
     @todo.save
     redirect_to todos_path
-
       #redirect_to @todo
       #   redirect_to todo_path(@todo)
       #   redirect_to todo_path(id: @todo.id)
