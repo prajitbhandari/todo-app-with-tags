@@ -174,7 +174,7 @@ RSpec.describe 'Todo App Crud Operation',js: true do
       sleep 2
       expect(page.all(".markItem").size).to eq(page_count-1)
       sleep 1 #Wait for backend to complete the soft-delete request
-      expect { Todo.find(subject_todo.id) }.to raise_error ActiveRecord::RecordNotFound
+      expect { Todo.with_deleted.find(subject_todo.id) }.to raise_error ActiveRecord::RecordNotFound
     end
   end
 end
