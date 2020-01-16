@@ -1,28 +1,27 @@
+require 'byebug'
 require 'rails_helper'
 require 'support/database_cleaner'
 RSpec.describe Todo, type: :model do
   context "when todo item is to be created" do
     it "should create todo item" do
       todo = Todo.new(item: "Todo item created!")
-      todo.save
-      expect(todo).to be_valid
+      expect(todo.valid?).to be true
     end
     it "should not have todo item to be nil or empty" do
       todo = Todo.new(item: nil)
-      todo.save
-      expect(todo).to_not be_valid
+      expect(todo.valid?).to be false
       expect(todo.errors.full_messages).to eq(["Item can't be blank"])
     end
   end
 
   context "When todo item is to be displayed" do
+    let!(:subject_todo) {FactoryBot.create(:todo, item: "Todo Item")}
     it "should find out the valid todo item" do
-      todo = Todo.with_deleted.find_by(id: 1)
-      expect(todo).to eq(nil)
+      todo = Todo.with_deleted.find(1)
+      expect(todo.valid?).to be true
     end
     it "should not find the nil or invalid todo item" do
-      todo = Todo.with_deleted.find_by(id: 1234)
-      expect(todo).to eq(nil)
+      expect{ Todo.with_deleted.find(1234)}.to raise_error ActiveRecord::RecordNotFound
     end
   end
 
@@ -35,27 +34,23 @@ RSpec.describe Todo, type: :model do
     end
     it "should update the todo item" do
       subject_todo.item =  "updated Todo Item!!"
-      subject_todo.save
-      expect(subject_todo).to be_valid
+      expect(subject_todo.valid?).to be true
     end
     it "should update the todo item Completion" do
       subject_todo.isCompleted = true
-      subject_todo.save
-      expect(subject_todo).to be_valid
+      expect(subject_todo.valid?).to be true
     end
     it "should not update the todo item to be nil" do
       subject_todo.item = nil
-      subject_todo.save
-      expect(subject_todo).to_not be_valid
+      expect(subject_todo.valid?).to be false
     end
     it "should not update the todo completion  to be nil" do
       subject_todo.isCompleted = nil
-      subject_todo.save
-      expect(subject_todo).to_not be_valid
+      expect(subject_todo.valid?).to be false
     end
     it "should update associated todo tags" do
       subject_todo.tag_ids = subject_tag.id
-      expect(subject_todo).to be_valid
+      expect(subject_todo.valid?).to be true
     end
   end
 
@@ -109,8 +104,7 @@ RSpec.describe Todo, type: :model do
     end
     it "should have associcated todo tags" do
       todo = Todo.new(item: "Todo Item !!!", tag_ids: subject_tag.id)
-      todo.save
-      expect(todo).to be_valid
+      expect(todo.valid?).to be true
     end
   end
 end
