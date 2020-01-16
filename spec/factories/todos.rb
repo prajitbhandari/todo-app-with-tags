@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :todo do
-    item {'Todo Item'}
+    item {'FactoryBot Item'}
   end
 end
 
