@@ -6,10 +6,12 @@ RSpec.describe Todo, type: :model do
     it "should create todo item" do
       todo = Todo.new(item: "Todo item created!")
       expect(todo.valid?).to be true
+      todo.save
     end
     it "should not have todo item to be nil or empty" do
       todo = Todo.new(item: nil)
       expect(todo.valid?).to be false
+      expect(todo.errors.keys).to eq([:item])
       expect(todo.errors.full_messages).to eq(["Item can't be blank"])
     end
   end
@@ -35,12 +37,16 @@ RSpec.describe Todo, type: :model do
     it "should update the todo item" do
       subject_todo.item =  "updated Todo Item!!"
       expect(subject_todo.valid?).to be true
+      subject_todo.save
     end
     it "should update the todo item Completion" do
+      expect(subject_todo.isCompleted).to be_in([true, false])
       subject_todo.isCompleted = true
       expect(subject_todo.valid?).to be true
+      subject_todo.save
     end
     it "should not update the todo item to be nil" do
+      expect(subject_todo.isCompleted).to be_in([true, false])
       subject_todo.item = nil
       expect(subject_todo.valid?).to be false
     end
@@ -51,6 +57,7 @@ RSpec.describe Todo, type: :model do
     it "should update associated todo tags" do
       subject_todo.tag_ids = subject_tag.id
       expect(subject_todo.valid?).to be true
+      subject_todo.save
     end
   end
 
@@ -105,6 +112,7 @@ RSpec.describe Todo, type: :model do
     it "should have associcated todo tags" do
       todo = Todo.new(item: "Todo Item !!!", tag_ids: subject_tag.id)
       expect(todo.valid?).to be true
+      todo.save
     end
   end
 end
