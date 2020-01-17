@@ -3,7 +3,7 @@ require 'rails_helper'
 require 'support/database_cleaner'
 RSpec.describe Todo, type: :model do
   context "when todo item is to be created" do
-    it "should create todo item" do
+    it "should create a valid todo item" do
       todo = Todo.new(item: "Todo item created!")
       expect(todo.valid?).to be true
       todo.save
@@ -19,11 +19,11 @@ RSpec.describe Todo, type: :model do
   context "When todo item is to be displayed" do
     let!(:subject_todo) {FactoryBot.create(:todo, item: "Todo Item")}
     it "should find out the valid todo item" do
-      todo = Todo.with_deleted.find(1)
+      todo = Todo.find(1)
       expect(todo.valid?).to be true
     end
     it "should not find the nil or invalid todo item" do
-      expect{ Todo.with_deleted.find(1234)}.to raise_error ActiveRecord::RecordNotFound
+      expect{ Todo.find(1234)}.to raise_error ActiveRecord::RecordNotFound
     end
   end
 
@@ -48,11 +48,18 @@ RSpec.describe Todo, type: :model do
     it "should not update the todo item to be nil" do
       expect(subject_todo.isCompleted).to be_in([true, false])
       subject_todo.item = nil
+      subject_todo.save
       expect(subject_todo.valid?).to be false
+      expect(subject_todo.errors.keys).to eq([:item])
+      expect(subject_todo.errors.full_messages).to eq(["Item can't be blank"])
     end
     it "should not update the todo completion  to be nil" do
+      expect(subject_todo.isCompleted).to be_in([true, false])
       subject_todo.isCompleted = nil
+      subject_todo.save
       expect(subject_todo.valid?).to be false
+      expect(subject_todo.errors.keys).to eq([:isCompleted])
+      expect(subject_todo.errors.full_messages).to eq(["Iscompleted is not included in the list"])
     end
     it "should update associated todo tags" do
       subject_todo.tag_ids = subject_tag.id
